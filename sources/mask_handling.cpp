@@ -27,10 +27,10 @@ std::regex build_regex_mask(std::string input_mask)
 
 std::vector<std::string> get_matches(std::string input, std::regex mask)
 {
-    std::vector<std::string> matches;
+    std::vector<std::string> matches{};
     std::smatch match;
     std::string match_info;
-    int index = 0;
+    int index = 1;
 
     while (std::regex_search(input, match, mask))
     {

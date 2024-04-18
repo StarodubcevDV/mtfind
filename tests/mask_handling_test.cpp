@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 #include <string>
 #include <regex>
+#include <fstream>
 
 #include "mask_handling.h"
 
@@ -50,5 +51,42 @@ TEST(MTFIND, PrintMatches)
         result.append(" ");
     }
 
-    ASSERT_EQ(result, "0 Hello, 24 Hello! ");
+    ASSERT_EQ(result, "1 Hello, 25 Hello! ");
+}
+
+TEST(MTFIND, GetMatchesFromFile)
+{
+    std::ifstream file("../example_data/test_data.txt");
+    std::string line;
+
+    std::regex mask(build_regex_mask("?ad"));
+    std::string result = "";
+
+    int line_idx = 1;
+    int matches_count = 0;
+
+    if (file.is_open()) {
+        while (std::getline(file, line)) 
+        {
+            auto matches = get_matches(line, mask);
+            matches_count += matches.size();
+            
+            for (auto &match: matches)
+            {
+                result.append(std::to_string(line_idx));
+                result.append(" ");
+                result.append(match);
+                result.append("\n");
+            }
+            line_idx++;
+        }
+        file.close();
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+    std::string mathces_info = std::to_string(matches_count);
+    mathces_info.append("\n");
+    result.insert(0, mathces_info);
+
+    ASSERT_EQ(result, "3\n5 5 bad\n6 6 mad\n7 6 had\n");
 }
