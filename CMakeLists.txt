@@ -1,7 +1,6 @@
 
 cmake_minimum_required(VERSION 3.24)
 
-
 set(CMAKE_CXX_STANDARD 14)
 
 set(PROJECT_NAME "mtfind_project")
@@ -23,6 +22,5 @@ target_sources(${PROJECT_NAME} PRIVATE
 add_executable(mtfind "${CMAKE_CURRENT_SOURCE_DIR}/mtfind.cpp")
 target_link_libraries(mtfind LINK_PUBLIC ${PROJECT_NAME})
 
-# if(BUILD_TESTING)
-#     add_subdirectory(tests)
-# endif()
+enable_testing()
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)

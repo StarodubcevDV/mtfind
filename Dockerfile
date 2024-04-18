@@ -11,3 +11,6 @@ RUN apt-get update \
       && /tmp/cmake-install.sh --skip-license --prefix=/opt/cmake-3.24.1 \
       && rm /tmp/cmake-install.sh \
       && ln -s /opt/cmake-3.24.1/bin/* /usr/local/bin
+
+RUN apt update \
+  && apt-get install xz-utils
