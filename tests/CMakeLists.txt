@@ -16,7 +16,7 @@ set(TEST_TARGET ${CMAKE_PROJECT_NAME}_unit_tests)
 
 set(
     SOURCES
-    mask_handling_test.cpp
+    matches_finding_test.cpp
 )
 
 file(COPY example_data DESTINATION ${CMAKE_BINARY_DIR})

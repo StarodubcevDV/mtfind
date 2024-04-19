@@ -4,7 +4,7 @@
 #include <regex>
 #include <fstream>
 
-#include "mask_handling.h"
+#include "matches_finding.h"
 
 
 TEST(MTFIND, MaskBuilding)
